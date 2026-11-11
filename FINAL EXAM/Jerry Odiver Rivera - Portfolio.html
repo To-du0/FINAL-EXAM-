@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jerry Odiver Rivera - Portfolio</title>
+
+<style>
+
+body {
+  background: #0a0f25;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 15px;
+  font-size: 14px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  font-size: 14px;
+}
+
+nav a {
+  color: gray;
+  margin-left: 15px;
+  font-size: 13px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 18px;
+  color: #5ee1ff;
+  margin-bottom: 10px;
+}
+
+p, small {
+  font-size: 13px;
+  color: gray;
+  line-height: 1.5;
+}
+
+.hi {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.info {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 18px;
+  margin-top: 15px;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #5ee1ff;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+pre {
+  background: #010510;
+  color: #5ee1ff;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div><b style="color: #5ee1ff;">JR</b> Jerry Odiver Rivera - BSIT</div>
+  <div>
+    <a href="#a">Personal</a>
+    <a href="#b">Education</a>
+    <a href="#c">Skills</a>
+    <a href="#d">Java</a>
+  </div>
+</nav>
+
+<div class="hi" id="a">
+  <div>
+    <h1>Hi, I'm <span style="color: #5ee1ff;">Jerry Odiver Rivera</span></h1>
+    <p>Junior Programmer • BSIT Student</p>
+    
+    <div class="info">
+      <h3>A. Personal Information</h3>
+      <p>
+        Name: Jerry Odiver Rivera<br>
+        Address: Guimba, Nueva Ecija<br>
+        Course: BSIT - OLSHCO Guimba<br>
+        Applying for Junior Programmer at JPCS Inc.
+      </p>
+    </div>
+  </div>
+
+  <div class="info" style="min-width: 220px; text-align: center;">
+    <img src= "g.jpg" class="img">
+    <h3>Jerry Odiver Rivera</h3>
+    <small>BSIT Student</small>
+  </div>
+</div>
+
+<div id="b">
+  <h3>B. Educational Background</h3>
+  <div class="grid2">
+    <div class="info">College: BSIT - OLSHCO Guimba NUEVA ECIJS (2026-Present)</div>
+    <div class="info">SHS/JHS/Elementary: TAYSAN SAN JOSE BATANGAS</div>
+  </div>
+</div>
+
+<div id="c">
+  <h3>C. Skills</h3>
+  <div class="grid4">
+    <div class="info">HTML</div>
+    <div class="info">Java Programmer</div>
+    <div class="info">Web Designer</div>
+    <div class="info">Game Developer</div>
+  </div>
+</div>
+
+<div id="d">
+  <h3>D. Java Code - CC102 Game</h3>
+  <div class="card">
+<pre>
+import java.util.Scanner;
+import java.util.Random;
+
+public class BarangayPatrol {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+        int[] tank = {80, 80, 80};
+        int day = 1;
+
+        System.out.println("=== BARANGAY TANK PATROL ===");
+        System.out.println("Goal: Survive 15 days. Supply is 20% per day.");
+        System.out.println("!!!Good luck!!!");
+
+        while (day <= 15) {
+            System.out.println("========== DAY " + day + " / 15 ==========");
+            System.out.println("Tank A: " + tank[0] + "% | Tank B: " + tank[1] + "% | Tank C: " + tank[2] + "%");
+
+            if (tank[0] < 40 || tank[1] < 40 || tank[2] < 40) {
+                System.out.println("!!! WARNING: Low level! Need refill!");
+            }
+
+            System.out.print("Where to add 20%? (A/B/C): ");
+            String choice = sc.next().toUpperCase();
+            int idx = -1;
+            if (choice.equals("A")) idx = 0;
+            else if (choice.equals("B")) idx = 1;
+            else if (choice.equals("C")) idx = 2;
+
+            if (idx != -1) {
+                tank[idx] += 20;
+                if (tank[idx] > 100) tank[idx] = 100;
+                System.out.println("> Added 20% to Tank " + choice);
+            } else {
+                System.out.println("> Invalid! No supply added.");
+            }
+
+            int dailyBawas;
+            if (day <= 5) dailyBawas = 6;  
+            else if (day <= 10) dailyBawas = 8; 
+            else dailyBawas = 10;              
+
+            System.out.println("> Daily barangay usage: -" + dailyBawas + "% all tanks");
+            for (int i = 0; i < 3; i++) tank[i] -= dailyBawas;
+
+            int bawas1 = rand.nextInt(5) + 8; // 8,9,10,11,12
+            int target1 = rand.nextInt(3);
+
+            System.out.println("> Leak: Tank " + (char)('A'+target1) + " -" + bawas1 + "%");
+            tank[target1] -= bawas1;
+
+            for (int i = 0; i < 3; i++) {
+                if (tank[i] <= 0) {
+                    System.out.println("=========================");
+                    System.out.println("Tank " + (char)('A'+i) + " empty! Game Over at Day " + day);
+                    if (day <= 6) {
+                        System.out.println("Lesson: Wag mag focus sa isang tank lang!");
+                    } else if (day <= 10) {
+                        System.out.println("Lesson: Nako malapit ka na sana! Lagi mo lang tignan sino pinakamababa sa kanila.");
+                    } else {
+                        System.out.println("Lesson: Sayang! Day " + day + " ka na! Konti na lang!");
+                        System.out.println("Technique: Wag mag-100% sa isa, keep all above 35%!");
+                    }
+                    System.out.println("=========================");
+                    
+                    return;
+                }
+            }
+
+            System.out.println("> Remaining: A=" + tank[0] + "% B=" + tank[1] + "% C=" + tank[2] + "%");
+            day++;
+        }
+
+        System.out.println("==============================");
+        System.out.println("YOU WIN! YOU SURVIVED 15 DAYS!");
+        System.out.println("Final: A=" + tank[0] + "% B=" + tank[1] + "% C=" + tank[2] + "%");
+        System.out.println("Ang galing! Na-gets mo na technique!");
+        System.out.println("Mahirap sa una, pero nung naintindihan mo, nanalo ka! Good work!!!!");
+        System.out.println("==============================");
+    }
+}
+
+</pre>
+  </div>
+</div>
+
+</body>
+</html>
